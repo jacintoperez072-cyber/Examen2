@@ -64,36 +64,38 @@ class AsistenciaController extends Controller
     {
         $this->authorize('crear', 'asistencia');
         
+        // NOTA: Este método registra la asistencia del docente en un grupo específico
+        // No es para registrar múltiples estudiantes, sino para la asistencia del docente
+        
         $validated = $request->validate([
             'grupo_materia_id' => 'required|exists:grupo_materias,id',
             'docente_id' => 'required|exists:docentes,id',
             'fecha' => 'required|date',
-            'asistencias' => 'required|array',
-            'asistencias.*.estudiante_id' => 'required|integer',
-            'asistencias.*.estado' => 'required|in:presente,ausente,retardo,justificada',
+            'hora_entrada' => 'nullable|date_format:H:i',
+            'hora_salida' => 'nullable|date_format:H:i',
+            'estado' => 'required|in:presente,ausente,retardo,justificada',
+            'observaciones' => 'nullable|string',
         ]);
 
-        $fecha = $validated['fecha'];
-        $grupoMateriaId = $validated['grupo_materia_id'];
-        $docenteId = $validated['docente_id'];
+        // Crear un único registro de asistencia del docente
+        $asistencia = Asistencia::updateOrCreate(
+            [
+                'grupo_materia_id' => $validated['grupo_materia_id'],
+                'docente_id' => $validated['docente_id'],
+                'fecha' => $validated['fecha'],
+            ],
+            [
+                'hora_entrada' => $validated['hora_entrada'],
+                'hora_salida' => $validated['hora_salida'],
+                'estado' => $validated['estado'],
+                'observaciones' => $validated['observaciones'],
+            ]
+        );
 
-        foreach ($validated['asistencias'] as $registro) {
-            Asistencia::updateOrCreate(
-                [
-                    'grupo_materia_id' => $grupoMateriaId,
-                    'docente_id' => $docenteId,
-                    'fecha' => $fecha,
-                ],
-                [
-                    'estado' => $registro['estado'],
-                ]
-            );
-        }
+        BitacoraService::registrar('CREAR', 'asistencias', $asistencia->id, 'Asistencia del docente en grupo registrada');
 
-        BitacoraService::registrar('CREAR', 'asistencias', $grupoMateriaId, 'Asistencias del grupo registradas');
-
-        return redirect()->back()
-            ->with('success', 'Asistencias registradas exitosamente');
+        return redirect()->route('asistencias.index')
+            ->with('success', 'Asistencia del docente registrada exitosamente');
     }
 
     public function porDocenteGrupo(Request $request)

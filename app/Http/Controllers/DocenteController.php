@@ -18,8 +18,12 @@ class DocenteController extends Controller
         $docentes = Docente::with('user', 'grupoMaterias')
             ->paginate(15);
 
+        $gruposMaterias = GrupoMateria::with('grupo', 'materia', 'horario')
+            ->get();
+
         return Inertia::render('Docentes/Index', [
             'docentes' => $docentes,
+            'gruposMaterias' => $gruposMaterias,
         ]);
     }
 
@@ -68,10 +72,12 @@ class DocenteController extends Controller
             $query->whereHas('docentes', function ($q) use ($docente) {
                 $q->where('docente_id', $docente->id);
             });
-        })->get()
-        ->groupBy('dia_semana');
+        })->with('grupoMaterias', 'aula')->get();
 
-        return response()->json($horariosDocente);
+        return Inertia::render('Docentes/Horarios', [
+            'docente' => $docente->load('user', 'grupoMaterias.grupo', 'grupoMaterias.materia', 'grupoMaterias.horario'),
+            'horarios' => $horariosDocente,
+        ]);
     }
 
     public function generarHorarios(Request $request)

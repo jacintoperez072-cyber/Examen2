@@ -32,12 +32,55 @@
   - Controladores y servicios
   - Frontend (Vue 3)
 
+- **[CU12_FRONTEND_DOCENTES.md](CU12_FRONTEND_DOCENTES.md)** - Detalles CU12
+  - Interfaz Vue para asignar horarios docentes
+  - Componentes Docentes/Index.vue y Horarios.vue
+  - Flujo completo frontend-backend
+  - Validaciones y permisos
+
+- **[CU12_GUIA_COMPLETA.md](CU12_GUIA_COMPLETA.md)** - Guía CU12: Asignar horario
+- **[CU13_GUIA_COMPLETA.md](CU13_GUIA_COMPLETA.md)** - Guía CU13: Generar horarios
+- **[CU14_GUIA_CORREGIDA.md](CU14_GUIA_CORREGIDA.md)** - Guía CU14: Registrar asistencia del docente (✅ Corregida)
+- **[CU15_GUIA_COMPLETA.md](CU15_GUIA_COMPLETA.md)** - Guía CU15: Consultar horarios
+- **[CU16_17_18_19_GUIA_CORREGIDA.md](CU16_17_18_19_GUIA_CORREGIDA.md)** - Guías CU16-19: Reportes y consultas (✅ Corregidas)
+
 ### ✅ Verificación
 - **[CHECKLIST_COMPLETITUD.txt](CHECKLIST_COMPLETITUD.txt)** - Checklist de implementación
   - Estado de cada caso de uso
   - Rutas configuradas
   - Seeders disponibles
   - Verificación de completitud
+
+- **[VERIFICACION_CU11_19.md](VERIFICACION_CU11_19.md)** - Verificación de frontends
+  - Estado de CU11-19
+  - Componentes Vue creados
+  - Rutas frontend-backend
+  - Tabla de consistencia
+
+- **[RESUMEN_VERIFICACION_CU11_19.md](RESUMEN_VERIFICACION_CU11_19.md)** - Resumen conciso
+  - Componentes encontrados vs creados
+  - Rutas agregadas
+  - Comparativa de completitud
+  - Status final
+
+### 🔧 Correcciones y Ajustes (Actualizado 11/11/2025)
+- **[RESUMEN_EJECUTIVO.md](RESUMEN_EJECUTIVO.md)** - ⭐ **COMIENZA AQUÍ PARA CORRECCIONES**
+  - Resumen de cambios realizados
+  - Qué se corrigió y por qué
+  - Estado actual del sistema
+  - Cambios de código
+
+- **[REPORTE_FINAL_CORRECCIONES.md](REPORTE_FINAL_CORRECCIONES.md)** - Reporte técnico detallado
+  - Todos los cambios backend/frontend
+  - Verificación de consistencia
+  - Flujo correcto de asistencia docente
+  - Checklist de validación
+
+- **[CORRECCIONES_REALIZADAS.md](CORRECCIONES_REALIZADAS.md)** - Cambios por archivo
+  - Archivos corregidos
+  - Cambios específicos
+  - Estado de documentación
+  - Próximos pasos
 
 ## 🎯 Flujos de Uso
 
@@ -47,11 +90,21 @@
 3. Acceder con credenciales admin
 4. Explorar el dashboard
 
+### Entender CU12 Rápido
+1. Leer **CU12_RESUMEN_RAPIDO.md** (3 minutos)
+2. Para más detalles: **CU12_GUIA_COMPLETA.md**
+
 ### Configuración Avanzada
 1. Consultar **SETUP.md**
 2. Revisar **INSTRUCCIONES.md** sección "Características"
 3. Crear roles personalizados
 4. Configurar permisos
+
+### 📌 NUEVA: Entender Correcciones (Sistema de Docentes)
+1. **RESUMEN_EJECUTIVO.md** (2 minutos) - Overview rápido
+2. **CU14_GUIA_CORREGIDA.md** - Cómo funciona la asistencia docente
+3. **CU16_17_18_19_GUIA_CORREGIDA.md** - Reportes y consultas
+4. **REPORTE_FINAL_CORRECCIONES.md** (si necesitas detalles técnicos)
 
 ### Desarrollo/Extensión
 1. Revisar **RESUMEN_IMPLEMENTACION.md**
