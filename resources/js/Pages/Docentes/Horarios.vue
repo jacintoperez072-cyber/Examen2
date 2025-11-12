@@ -133,7 +133,7 @@ import { ref, computed, onMounted } from 'vue';
 import { Link, router } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
-defineProps({
+const props = defineProps({
   docente: Object,
   horarios: Array,
 });
@@ -157,9 +157,4 @@ const confirmarDesasignar = (grupoMateria) => {
     router.delete(`/docentes/${props.docente.id}/desasignar-grupo-materia/${grupoMateria.id}`);
   }
 };
-
-const props = defineProps({
-  docente: Object,
-  horarios: Array,
-});
 </script>

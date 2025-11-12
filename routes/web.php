@@ -16,12 +16,11 @@ use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ReporteController;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    // Redirigir a login si no está autenticado, o a dashboard si está autenticado
+    if (auth()->check()) {
+        return redirect('/dashboard');
+    }
+    return redirect('/login');
 });
 
 Route::middleware([
