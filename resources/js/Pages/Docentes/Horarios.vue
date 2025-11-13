@@ -57,7 +57,7 @@
                           </div>
                           <div>
                             <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
-                              Aula: {{ horario.aula?.nombre || 'N/A' }}
+                              Aula: {{ horario.aula?.nombre_aula || 'N/A' }}
                             </span>
                           </div>
                           <div>
