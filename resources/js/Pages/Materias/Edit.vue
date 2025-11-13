@@ -42,19 +42,6 @@
               </div>
 
               <div>
-                <label class="block text-sm font-medium text-gray-700">Créditos</label>
-                <input 
-                  v-model="form.creditos" 
-                  type="number"
-                  required
-                  min="1"
-                  max="10"
-                  class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"
-                />
-                <p v-if="form.errors.creditos" class="text-red-600 text-sm mt-1">{{ form.errors.creditos }}</p>
-              </div>
-
-              <div>
                 <label class="block text-sm font-medium text-gray-700">Horas Semanales</label>
                 <input 
                   v-model="form.horas_semanales" 
@@ -111,7 +98,6 @@ const form = useForm({
   nombre: '',
   codigo: '',
   descripcion: '',
-  creditos: '',
   horas_semanales: '',
   estado: 'activa',
 });
@@ -120,7 +106,6 @@ form.defaults({
   nombre: props.materia.nombre,
   codigo: props.materia.codigo,
   descripcion: props.materia.descripcion,
-  creditos: props.materia.creditos,
   horas_semanales: props.materia.horas_semanales,
   estado: props.materia.estado,
 });
