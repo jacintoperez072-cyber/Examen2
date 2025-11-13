@@ -101,4 +101,46 @@ class DocenteController extends Controller
         
         return response()->json(['message' => 'Horarios generados exitosamente']);
     }
+
+    public function edit(Docente $docente)
+    {
+        $this->authorize('edit', 'usuarios');
+        
+        return Inertia::render('Docentes/Edit', [
+            'docente' => $docente->load('user'),
+        ]);
+    }
+
+    public function update(Request $request, Docente $docente)
+    {
+        $this->authorize('edit', 'usuarios');
+        
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $docente->user_id,
+            'especialidad' => 'required|string|max:255',
+            'fecha_contrato' => 'required|date',
+            'estado' => 'required|in:activo,inactivo',
+        ]);
+
+        // Actualizar usuario
+        $docente->user->update([
+            'nombre' => $validated['nombre'],
+            'apellido' => $validated['apellido'],
+            'email' => $validated['email'],
+        ]);
+
+        // Actualizar docente
+        $docente->update([
+            'especialidad' => $validated['especialidad'],
+            'fecha_contrato' => $validated['fecha_contrato'],
+            'estado' => $validated['estado'],
+        ]);
+
+        BitacoraService::registrar('ACTUALIZAR', 'docentes', $docente->id, 'Docente actualizado');
+
+        return redirect()->route('docentes.index')
+            ->with('success', 'Docente actualizado exitosamente');
+    }
 }

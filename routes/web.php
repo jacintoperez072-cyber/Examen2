@@ -68,6 +68,8 @@ Route::middleware([
 
     // Rutas de Docentes (CU12, CU13, CU15)
     Route::get('/docentes', [DocenteController::class, 'index'])->name('docentes.index');
+    Route::get('/docentes/{docente}/edit', [DocenteController::class, 'edit'])->name('docentes.edit');
+    Route::put('/docentes/{docente}', [DocenteController::class, 'update'])->name('docentes.update');
     Route::get('/docentes/generar', function () {
         return Inertia::render('Docentes/GenerarHorarios');
     })->name('docentes.generar-page');
