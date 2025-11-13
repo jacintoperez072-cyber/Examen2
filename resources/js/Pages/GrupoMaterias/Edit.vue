@@ -68,7 +68,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
   grupoMateria: Object,
   horarios: Array,
 });
@@ -78,12 +78,12 @@ const form = useForm({
 });
 
 form.defaults({
-  horario_id: grupoMateria.horario_id,
+  horario_id: props.grupoMateria.horario_id,
 });
 
 form.reset();
 
 const submit = () => {
-  form.put(`/grupo-materias/${grupoMateria.id}`);
+  form.put(`/grupo-materias/${props.grupoMateria.id}`);
 };
 </script>

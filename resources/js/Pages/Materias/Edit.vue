@@ -103,7 +103,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
   materia: Object,
 });
 
@@ -117,17 +117,17 @@ const form = useForm({
 });
 
 form.defaults({
-  nombre: materia.nombre,
-  codigo: materia.codigo,
-  descripcion: materia.descripcion,
-  creditos: materia.creditos,
-  horas_semanales: materia.horas_semanales,
-  estado: materia.estado,
+  nombre: props.materia.nombre,
+  codigo: props.materia.codigo,
+  descripcion: props.materia.descripcion,
+  creditos: props.materia.creditos,
+  horas_semanales: props.materia.horas_semanales,
+  estado: props.materia.estado,
 });
 
 form.reset();
 
 const submit = () => {
-  form.put(`/materias/${materia.id}`);
+  form.put(`/materias/${props.materia.id}`);
 };
 </script>

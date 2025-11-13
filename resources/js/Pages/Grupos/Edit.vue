@@ -79,7 +79,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
   grupo: Object,
 });
 
@@ -91,15 +91,15 @@ const form = useForm({
 });
 
 form.defaults({
-  nombre: grupo.nombre,
-  descripcion: grupo.descripcion,
-  cantidad_estudiantes: grupo.cantidad_estudiantes,
-  estado: grupo.estado,
+  nombre: props.grupo.nombre,
+  descripcion: props.grupo.descripcion,
+  cantidad_estudiantes: props.grupo.cantidad_estudiantes,
+  estado: props.grupo.estado,
 });
 
 form.reset();
 
 const submit = () => {
-  form.put(`/grupos/${grupo.id}`);
+  form.put(`/grupos/${props.grupo.id}`);
 };
 </script>

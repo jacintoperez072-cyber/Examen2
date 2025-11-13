@@ -84,7 +84,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
   aula: Object,
 });
 
@@ -97,14 +97,16 @@ const form = useForm({
 
 // Llenar el formulario con datos del aula
 form.defaults({
-  nombre_aula: aula.nombre_aula,
-  tipo: aula.tipo,
-  capacidad: aula.capacidad,
-  estado: aula.estado,
+  nombre_aula: props.aula.nombre_aula,
+  tipo: props.aula.tipo,
+  capacidad: props.aula.capacidad,
+  estado: props.aula.estado,
 });
 
+form.reset();
+
 const submit = () => {
-  form.put(`/aulas/${aula.id}`);
+  form.put(`/aulas/${props.aula.id}`);
 };
 </script>
 

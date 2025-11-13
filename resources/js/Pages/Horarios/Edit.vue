@@ -100,7 +100,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
   horario: Object,
   aulas: Array,
 });
@@ -114,16 +114,16 @@ const form = useForm({
 });
 
 form.defaults({
-  aula_id: horario.aula_id,
-  dia_semana: horario.dia_semana,
-  hora_inicio: horario.hora_inicio,
-  hora_fin: horario.hora_fin,
-  estado: horario.estado,
+  aula_id: props.horario.aula_id,
+  dia_semana: props.horario.dia_semana,
+  hora_inicio: props.horario.hora_inicio,
+  hora_fin: props.horario.hora_fin,
+  estado: props.horario.estado,
 });
 
 form.reset();
 
 const submit = () => {
-  form.put(`/horarios/${horario.id}`);
+  form.put(`/horarios/${props.horario.id}`);
 };
 </script>

@@ -100,7 +100,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
   docente: Object,
 });
 
@@ -114,17 +114,17 @@ const form = useForm({
 });
 
 form.defaults({
-  nombre: docente.user?.nombre || '',
-  apellido: docente.user?.apellido || '',
-  email: docente.user?.email || '',
-  especialidad: docente.especialidad,
-  fecha_contrato: docente.fecha_contrato,
-  estado: docente.estado,
+  nombre: props.docente.user?.nombre || '',
+  apellido: props.docente.user?.apellido || '',
+  email: props.docente.user?.email || '',
+  especialidad: props.docente.especialidad,
+  fecha_contrato: props.docente.fecha_contrato,
+  estado: props.docente.estado,
 });
 
 form.reset();
 
 const submit = () => {
-  form.put(`/docentes/${docente.id}`);
+  form.put(`/docentes/${props.docente.id}`);
 };
 </script>

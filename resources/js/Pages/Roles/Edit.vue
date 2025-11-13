@@ -73,7 +73,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
   rol: Object,
   permisos: Array,
 });
@@ -85,15 +85,15 @@ const form = useForm({
 });
 
 form.defaults({
-  nombre: rol.nombre,
-  descripcion: rol.descripcion,
-  permiso_ids: rol.permisos?.map(p => p.id) || [],
+  nombre: props.rol.nombre,
+  descripcion: props.rol.descripcion,
+  permiso_ids: props.rol.permisos?.map(p => p.id) || [],
 });
 
 form.reset();
 
 const submit = () => {
-  form.put(`/roles/${rol.id}`, {
+  form.put(`/roles/${props.rol.id}`, {
     data: {
       nombre: form.nombre,
       descripcion: form.descripcion,
