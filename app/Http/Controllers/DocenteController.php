@@ -84,10 +84,10 @@ class DocenteController extends Controller
             $query->whereHas('docentes', function ($q) use ($docente) {
                 $q->where('docente_id', $docente->id);
             });
-        })->with('grupoMaterias', 'aula')->get();
+        })->with('grupoMaterias.grupo', 'grupoMaterias.materia', 'aula')->get();
 
         return Inertia::render('Docentes/Horarios', [
-            'docente' => $docente->load('user', 'grupoMaterias.grupo', 'grupoMaterias.materia', 'grupoMaterias.horario'),
+            'docente' => $docente->load('user', 'grupoMaterias.grupo', 'grupoMaterias.materia', 'grupoMaterias.horario.aula'),
             'horarios' => $horariosDocente,
         ]);
     }
